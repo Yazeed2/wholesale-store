@@ -20,6 +20,8 @@ const strategy  = new JwtStrategy(options,async (payload, done)=> {
         const id = payload.sub
         const user = await db('users').select('*').where({id}).first()
         delete user.password
+        user.userType = user.user_type 
+        delete user.user_type
         if(!user) return done(null, false)
         return done(null, user)
 }catch (err){ 
