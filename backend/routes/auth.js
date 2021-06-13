@@ -10,7 +10,8 @@ router.post('/login', async(req, res)=> {
     const {username, password} = req.body
 try{ 
 
-    const user = await db('users').select('*').where({username})
+    const user = await db('users').select('*').where({username}).first()
+    console.log(user)
     if( !user){ 
         res.status(401).json({code: 'unauthorized', msg: 'username or password are wrong'})
     }
@@ -24,6 +25,7 @@ try{
 
     }
 }catch (err) { 
+    console.log({err})
     res.status(500).json({code:'server Error',  msg:err})
 }
 
@@ -41,13 +43,20 @@ router.post('/register', async (req, res)=> {
             const jwt = issueJWT(user)
             res.status(200).json({token: jwt.token, user})
               }catch (err) { 
-                console.log({err})
+                if(err.code == "23505" ) return res.status(401).json({code: 'duplicate username', msg: 'username is found please use another username' })
                 res.status(500).json({code:'server Error',  msg:err})
             }
         }) 
     }catch (err) { 
-        console.log({err})
-        res.status(500).json({code:'server Error',  msg:err})
+
+        return res.status(500).json({code:'server Error',  msg:err})
     }
+})
+
+router.get('/', passport.authenticate('jwt', {session: false}) , (req, res) => { 
+    const {user} = req 
+    res.status(200).json({ code: 'authenticated', user})
+
+
 })
 module.exports = router; 

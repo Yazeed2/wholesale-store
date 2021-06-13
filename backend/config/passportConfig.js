@@ -17,8 +17,9 @@ require('dotenv').config({path: "../.env"})
 
 const strategy  = new JwtStrategy(options,async (payload, done)=> { 
     try { 
-
-        const user = await db('users').select('*').where({username})
+        const id = payload.sub
+        const user = await db('users').select('*').where({id}).first()
+        delete user.password
         if(!user) return done(null, false)
         return done(null, user)
 }catch (err){ 
