@@ -8,7 +8,7 @@ import contextValue from '../../components/context/Context'
 
 export default function Login() {
     const [context, setContext] =  useContext(contextValue)
-    const [state, setState] = useState()
+    const [state, setState] = useState({})
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
@@ -27,7 +27,6 @@ export default function Login() {
                 localStorage.setItem('token', token)
                 history.push('/')
                 setLoading(false)
-
 
             }catch(err) { 
                 setLoading(false)
