@@ -56,7 +56,8 @@ router.post('/register', async (req, res)=> {
 })
 
 router.get('/', passport.authenticate('jwt', {session: false}) , (req, res) => { 
-    const {user} = req 
+    let {user} = req 
+    user = snakeToCamel(user)
     res.status(200).json({ code: 'authenticated', user})
 
 
