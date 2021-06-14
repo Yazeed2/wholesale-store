@@ -4,7 +4,6 @@ const passport = require('passport')
 const bcrypt = require('bcryptjs')
 const issueJWT = require('../config/utils')
 const db = require('../db/db')
-const e = require('express')
 
 router.post('/login', async(req, res)=> {   
     const {username, password} = req.body
