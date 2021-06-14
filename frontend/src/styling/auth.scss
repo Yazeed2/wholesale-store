@@ -1,0 +1,32 @@
+.auth{ 
+    width: fit-content;
+    margin: 50px auto;
+ 
+    
+    &-userType{ 
+        width: 120px ;
+        background-color: white ;
+        border: 2px black solid;
+        border-radius: 5px;
+        margin: 0 15px ;
+        &.active{ 
+            background-color: rgb(104, 213, 233) ;
+            border: 2px  rgb(104, 213, 233)  solid;
+            
+        }
+    }
+    &-input{ 
+        width: 300px;
+        display: block;
+        padding: 5px;
+        margin: 25px 0;
+    }
+    &-submit{
+        display: block;
+        width: 150px ;
+        background-color: white ;
+        border: 2px black solid;
+        border-radius: 5px;
+        margin: 25px auto;
+    }
+}

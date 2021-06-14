@@ -1,0 +1,10 @@
+@import './auth.scss'; 
+@import '../components/loading/loading.scss'; 
+@import '../components/navbar/navbar.scss'; 
+.page_title { 
+    text-align: center;
+}
+body{
+    margin-top: 0;
+    padding-top: 0;
+}
