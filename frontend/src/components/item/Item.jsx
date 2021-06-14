@@ -54,8 +54,11 @@ export default function Item({item}) {
     }
  
     return (
-        <div>
-            <img src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg" alt="" /> <h4>{item.name}</h4>
+        <div className="item">
+                        <img src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg" alt="" /> 
+        <div className="item-content">
+                        <h4>{item.name}</h4>
+
             <button onClick={handleAddRange} >+ Add range</button>
 
             <table>
@@ -65,9 +68,10 @@ export default function Item({item}) {
     <button onClick={handleSave}>Save</button>
   </tr>
 
-  {ranges.map((range, i) =>  <LogisticPrice range={range}  i={i} setState={setRanges} />  )}  
+  {ranges.map((range, i) =>  <LogisticPrice range={range}  i={i} setState={setRanges} ranges={ranges} />  )}  
    </table>
    <Loading loading={loading} /> 
+   </div>
         </div>
     )
 }
