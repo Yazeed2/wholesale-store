@@ -11,7 +11,6 @@ router.post('/login', async(req, res)=> {
 try{ 
 
     const user = await db('users').select('*').where({username}).first()
-    console.log(user)
     if( !user){ 
         res.status(401).json({code: 'unauthorized', msg: 'username or password are wrong'})
     }

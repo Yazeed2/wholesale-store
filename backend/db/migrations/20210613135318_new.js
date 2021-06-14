@@ -5,7 +5,6 @@ exports.up = function(knex) {
         table.integer('client_id').references('users.id').notNullable()
         table.integer('store_id').references('users.id').notNullable()
         table.specificType('qty', 'INT[]').notNullable()
-        table.specificType('inventories', 'INT[]').references('inventory.id','INT[]').notNullable()
         table.timestamps(true, true);
         table.float('total').notNullable()
 
