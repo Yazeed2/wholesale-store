@@ -56,6 +56,7 @@ router.get('/:id',async (req, res)=> {
 }
 })
 
+
 // get inventory :storeId 
 router.get('/store/:storeId', async (req, res)=> { 
     const {storeId} = req.params
@@ -69,6 +70,9 @@ router.get('/store/:storeId', async (req, res)=> {
     res.status(500).json({code:'server Error',  msg:err})
 }
 })
+
+
+
 
 
 module.exports = router; 
