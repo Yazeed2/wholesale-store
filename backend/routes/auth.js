@@ -4,6 +4,8 @@ const passport = require('passport')
 const bcrypt = require('bcryptjs')
 const issueJWT = require('../config/utils')
 const db = require('../db/db')
+const snakeToCamel = require('../config/camelSnake')
+
 
 router.post('/login', async(req, res)=> {   
     const {username, password} = req.body
@@ -17,7 +19,9 @@ try{
     if(auth){ 
         delete user.password 
         const tokenObj = issueJWT(user)
-        res.status(200).json({token: tokenObj.token, user, expiresIn: tokenObj.expires })
+
+        const userObj = snakeToCamel(user)
+        res.status(200).json({token: tokenObj.token,user:userObj, expiresIn: tokenObj.expires })
     }else{ 
         res.status(401).json({code: 'unauthorized', msg: 'username or password are wrong' })
 
